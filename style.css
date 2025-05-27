@@ -1,0 +1,272 @@
+/* --- RESET E CONFIGURAÇÕES GLOBAIS --- */
+:root {
+    --color-primary: #6a5af9;
+    --color-secondary: #d1d1f7;
+    --color-light: #f4f4f4;
+    --color-dark: #222;
+    --color-success: #28a745;
+    --color-error: #dc3545;
+    --font-family: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    min-height: 100vh;
+    overflow: hidden; /* Evita barras de rolagem desnecessárias */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-light);
+}
+
+/* --- FUNDO ANIMADO --- */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(45deg, #1d2b64, #f8cdda, #1d2b64, #f8cdda);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- CONTAINER PRINCIPAL --- */
+.main-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+/* --- ESTILO DOS FORMULÁRIOS (GLASSMORPHISM) --- */
+.form-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3rem;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.form-container.hidden {
+    display: none;
+    transform: scale(0.95);
+    opacity: 0;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-instruction {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--color-secondary);
+}
+
+/* --- GRUPO DE INPUTS --- */
+.input-group {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* Espaço para o ícone */
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-secondary);
+    color: var(--color-light);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-group label {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    color: var(--color-secondary);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -15px;
+    left: 40px;
+    font-size: 0.8rem;
+    color: var(--color-primary);
+}
+
+.input-group input:focus {
+    border-bottom-color: var(--color-primary);
+}
+
+.input-group i {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    color: var(--color-secondary);
+    transition: color 0.3s;
+}
+
+.input-group input:focus ~ i {
+    color: var(--color-primary);
+}
+
+.input-group .toggle-password {
+    left: auto;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* --- VALIDAÇÃO E FEEDBACK --- */
+.input-group.success input { border-bottom-color: var(--color-success); }
+.input-group.success i { color: var(--color-success); }
+.input-group.error input { border-bottom-color: var(--color-error); }
+.input-group.error i { color: var(--color-error); }
+
+.form-message {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+.form-message.success { color: var(--color-success); }
+.form-message.error { color: var(--color-error); }
+
+/* --- FORÇA DA SENHA --- */
+.password-strength {
+    display: flex;
+    align-items: center;
+    margin-top: -1rem;
+    margin-bottom: 1.5rem;
+}
+.strength-bar {
+    flex-grow: 1;
+    height: 6px;
+    background: #444;
+    border-radius: 3px;
+    transition: width 0.3s, background-color 0.3s;
+}
+.strength-text {
+    margin-left: 10px;
+    font-size: 0.8rem;
+    color: var(--color-secondary);
+}
+
+/* --- OPÇÕES DO FORMULÁRIO --- */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+.remember-me input {
+    margin-right: 5px;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+a:hover {
+    opacity: 0.8;
+}
+
+/* --- BOTÃO DE SUBMISSÃO --- */
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background: var(--color-primary);
+    border: none;
+    border-radius: 25px;
+    color: var(--color-light);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-submit:hover {
+    background-color: #5a4af9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+/* Spinner de carregamento */
+.spinner {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -10px;
+}
+
+.btn-submit.loading .btn-text {
+    opacity: 0;
+}
+.btn-submit.loading .spinner {
+    display: block;
+}
+.btn-submit.loading {
+    pointer-events: none;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* --- TEXTO PARA TROCAR DE FORMULÁRIO --- */
+.switch-form-text {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 480px) {
+    .form-container {
+        padding: 2rem;
+    }
+    .form-title {
+        font-size: 1.8rem;
+    }
+}
